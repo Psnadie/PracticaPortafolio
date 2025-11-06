@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap');
+
+:root {
+
+    --titlulo: 'Rock Salt', cursive;
+    --focus: 'Beth Ellen', cursive;
+    --subtitulo: 'Oswald', sans-serif;
+    --fondo: #04101C;
+    --naranja: #E03C23;
+    --azul: #4291AD;
+    --cafe: #261211;
+    --gris: #D9D9D9;
+    --gris-oscuro: #2D2D2D;
+    --blanco: #FFFFFF;
+}
+
+body {
+    color: var(--fondo);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background-color: transparent;
+    color: var(--azul);
+    padding: rem;
+    height: 100px;
+    display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+header h4 {
+    font-family: Oswald, sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    flex: 1;
+    margin: auto;
+    padding-left: 2.5rem;
+}
+
+header nav {
+    flex: 1;
+
+    & ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        & li {
+            & a {
+                text-decoration: none;
+                color: var(--azul);
+                font-family: var(--subtitulo);
+                font-weight: 400;
+                font-size: 1.2rem;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: var(--naranja);
+                }
+            }
+        }
+
+    }
+}
+
+/*estilos del hero section*/
+
+.hero {
+    background-image: url("assets/GQ_TRAVIS_SCOTT_03_0954.webp");
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-left: 5rem;
+
+    & .texto {
+        margin: 0;
+        padding: 0;
+
+        & h1 {
+            font-family: var(--titlulo);
+            font-size: 4rem;
+            color: var(--azul);
+            padding: 2rem;
+            margin: 0;
+        }
+
+        & h2 {
+            font-family: var(--focus);
+            font-weight: lighter;
+            font-size: 1.5rem;
+            color: var(--azul);
+            padding: 0 2rem;
+            margin: 0;
+        }
+
+    }
+}
+
+/*estilos de la seccion de biografia*/
+
+.bio {
+    padding: 0 7.5% 0 7.5%;
+    padding-bottom: 5rem;
+    height: auto;
+    background-color: var(--fondo);
+
+    & .bio-content {
+        height: 80vh;
+        padding: 0;
+        margin: 0;
+    }
+
+    & .bio-content:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        & img {
+            width: 50%;
+        }
+
+        & .titulo {
+            padding: 1rem 2rem;
+            background-color: var(--gris);
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--titlulo);
+            color: var(--azul);
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+        }
+
+        & .texto {
+            padding: 1rem 2rem;
+            background-color: var(--gris-oscuro);
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--subtitulo);
+            font-weight: 400;
+            color: var(--blanco);
+            position: absolute;
+            bottom: 5%;
+            right: 0%;
+            width: 40%;
+        }
+    }
+
+    & .bio-content:nth-child(2) {
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        position: relative;
+        padding-bottom: 10%;
+
+        & img {
+            width: 55%;
+        }
+
+        & .titulo {
+            padding: 1rem 2rem;
+            background-color: var(--gris);
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--titlulo);
+            color: var(--azul);
+            position: absolute;
+            top: 20%;
+            left: 35%;
+            transform: translateY(-50%);
+        }
+
+        & .texto {
+            padding: 1rem 2rem;
+            background-color: var(--gris-oscuro);
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--subtitulo);
+            font-weight: 400;
+            color: var(--blanco);
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            width: 40%;
+        }
+    }
+
+    & .bio-content:nth-child(3) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        & img {
+            width: 45%;
+        }
+
+        & .titulo {
+            padding: 1rem 2rem;
+            background-color: var(--gris);
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--titlulo);
+            color: var(--azul);
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            transform: translateY(-50%);
+        }
+
+        & .texto {
+            padding: 1rem 2rem;
+            background-color: var(--gris-oscuro);
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--subtitulo);
+            font-weight: 400;
+            color: var(--blanco);
+            position: absolute;
+            bottom: 10%;
+            left: 0%;
+            width: 40%;
+        }
+    }
+
+    & .bio-content:nth-child(4) {
+        display: flex;
+        align-items: end;
+        justify-content: start;
+        position: relative;
+        padding-left: 10%;
+
+        & img {
+            width: 45%;
+        }
+
+        & .titulo {
+            padding: 1rem 2rem;
+            background-color: var(--gris);
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--titlulo);
+            color: var(--azul);
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateY(-50%);
+        }
+
+        & .texto {
+            padding: 1rem 2rem;
+            background-color: var(--gris-oscuro);
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--subtitulo);
+            font-weight: 400;
+            color: var(--blanco);
+            position: absolute;
+            bottom: 5%;
+            left: 45%;
+            width: 50%;
+        }
+    }
+}
+
+/*estilos del tour*/
+
+.tour-section {
+    background-image: url("assets/wp5202860-travis-scott-desktop-wallpapers-tickets.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.tour-title {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 80px;
+    font-family: var(--titlulo);
+    color: var(--blanco);
+}
+
+.tour-table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 200px 400px 1fr 200px;
+    gap: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+
+    & div {
+        font-size: 2rem;
+        font-weight: 600;
+        font-family: var(--subtitulo);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #fff;
+    }
+}
+
+.tour-dates {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-family: var(--subtitulo);
+}
+
+.tour-row {
+    display: grid;
+    grid-template-columns: 200px 400px 1fr 200px;
+    gap: 40px;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
+
+.date {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.city {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+.venue {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+.tickets {
+    text-align: left;
+}
+
+.ticket-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-active {
+    background: #fff;
+    color: #000;
+
+    &:hover {
+        transform: scale(1.10);
+    }
+}
+
+/*estilos venta de ticket*/
+
+
+
+/*estilos albumes destacados*/
+
+/*estilos de merch*/
+
+/*estilos contact us*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Responsive de la seccion de tickets*/
+
+@media (max-width: 1920px) {
+    .tour-section {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .tour-title {
+        font-size: 3rem;
+        margin-bottom: 60px;
+    }
+
+    .table-header,
+    .tour-row {
+        grid-template-columns: 180px 350px 1fr 180px;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .tour-section {
+        padding: 40px 40px;
+    }
+
+    .tour-title {
+        font-size: 2.5rem;
+    }
+
+    .table-header {
+        display: none;
+    }
+
+    .tour-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 30px 20px;
+    }
+
+    .tickets {
+        text-align: left;
+    }
+
+    .date::before {
+        content: 'DATE: ';
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .city::before {
+        content: 'CITY: ';
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .venue::before {
+        content: 'VENUE: ';
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
