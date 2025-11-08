@@ -491,8 +491,174 @@ header nav {
 
 /*estilos de merch*/
 
+.merch {
+    height: 100vh;
+    background-color: var(--fondo);
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    padding: 5% 7.5% 5% 7.5%;
+
+    & h2 {
+        flex: 1;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        font-family: var(--titlulo);
+        text-align: center;
+        color: var(--azul);
+    }
+
+    & .merch-items {
+        flex: 6;
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+
+        & .item {
+            width: 33%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: var(--azul);
+
+            & img {
+                max-width: 60%;
+            }
+
+            & h3 {
+                font-family: var(--subtitulo);
+                font-weight: 400;
+                font-size: 1.2rem;
+                margin: 0.5rem 0 0.2rem 0;
+                text-transform: uppercase;
+            }
+
+            & p {
+                font-family: var(--focus);
+                color: var(--blanco);
+                font-size: 1rem;
+                margin: 0;
+            }
+        }
+    }
+}
+
 /*estilos contact us*/
 
+.contact {
+    height: 80vh;
+    background-color: var(--fondo);
+    padding: 5% 7.5% 5% 7.5%;
+
+    & .divider {
+        display: flex;
+        height: 100%;
+
+        & .form {
+            flex: 1;
+
+            .contact-section {
+                width: 100%;
+                margin: auto;
+            }
+
+            .contact-title {
+                font-family: var(--titlulo);
+                color: var(--azul);
+                margin: 0;
+                font-size: 3rem;
+                text-align: center;
+                margin-bottom: 40px;
+                letter-spacing: 3px;
+                font-weight: normal;
+            }
+
+            .form-group {
+                margin-bottom: 25px;
+                position: relative;
+                font-family: var(--subtitulo);
+                font-size: 1rem;
+            }
+
+            .form-group label {
+                display: block;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                margin-bottom: 8px;
+                color: #fff;
+                font-weight: 400;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                color: #fff;
+                padding: 10px 0;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+                outline: none;
+            }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                border-bottom-color: rgba(255, 255, 255, 0.8);
+            }
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                color: rgba(255, 255, 255, 0.3);
+            }
+
+            .form-group textarea {
+                resize: vertical;
+                min-height: 60px;
+                padding-top: 10px;
+            }
+
+            .submit-btn {
+                width: 100%;
+                background: transparent;
+                border: 1px solid #fff;
+                color: #fff;
+                padding: 18px;
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 20px;
+                font-weight: 400;
+            }
+
+            .submit-btn:hover {
+                background: #fff;
+                color: #0a1628;
+            }
+
+            .submit-btn:active {
+                transform: scale(0.98);
+            }
+
+        }
+
+        & .image-contact {
+            flex: 1;
+            display: flex;
+            justify-content: end;
+
+            & img {
+                max-height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+
+}
 
 
 
@@ -568,5 +734,32 @@ header nav {
         content: 'VENUE: ';
         font-size: 0.8rem;
         color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/*Responsive de la parte del album*/
+
+@media (max-width: 1024px) {
+    .albums-section {
+        grid-template-columns: 1fr;
+    }
+
+    .albums-right {
+        order: -1;
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .album-title {
+        font-size: 1.5rem;
+    }
+
+    .album-description {
+        padding-left: 20px;
     }
 }
