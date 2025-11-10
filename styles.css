@@ -24,7 +24,7 @@ body {
 
 header {
     width: 100%;
-    background-color: transparent;
+    background-color: black;
     color: var(--azul);
     padding: rem;
     height: 100px;
@@ -32,6 +32,8 @@ header {
     position: fixed;
     top: 0;
     z-index: 1000;
+    border-color: var(--azul);
+    border-bottom: 2px solid;
 }
 
 header h4 {
@@ -61,7 +63,7 @@ header nav {
                 color: var(--azul);
                 font-family: var(--subtitulo);
                 font-weight: 400;
-                font-size: 1.2rem;
+                font-size: 1.5rem;
                 transition: color 0.3s;
 
                 &:hover {
@@ -445,8 +447,6 @@ header nav {
             font-weight: 400;
             text-align: center;
 
-            border: red 1px solid;
-
             & ul {
                 list-style: none;
                 padding: 0;
@@ -458,35 +458,122 @@ header nav {
                 justify-content: space-around;
 
                 & li {
+                    color: var(--azul);
                     font-family: var(--focus);
                     transition: all 0.3s ease;
                     position: relative;
                     cursor: pointer;
+                    opacity: 0.5;
+                    font-size: 2rem;
+                    display: block;
                 }
 
                 & li:hover {
                     color: var(--naranja);
                     transform: translateX(25px);
+                    opacity: 0.8;
 
                 }
 
-                & li.selected::before {
-                    content: '>';
-                    position: absolute;
-                    left: 0;
-                    color: var(--naranja);
-                    font-weight: bold;
-                    font-size: 1.5em;
+                & li.active::before {
+                    color: var(--blanco);
+                    content: '>   ';
+
                 }
+
+                & li.active {
+                    color: var(--blanco);
+                    opacity: 1;
+                    padding-left: 2rem;
+
+                }
+
+                .album-description {
+                    max-height: 0;
+                    overflow: hidden;
+                    opacity: 0;
+                    transition: all 0.5s ease;
+                    padding-left: 40px;
+                    margin-top: 0;
+                    font-family: var(--subtitulo);
+                    font-size: 1.5rem;
+                }
+
+                .album-description.active {
+                    max-height: 500px;
+                    opacity: 1;
+                    margin-top: 15px;
+                    margin-bottom: 20px;
+                }
+
+
             }
         }
 
         & .spotify {
             flex: 1;
-            border: red 1px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
     }
+}
+
+/*estilos de la seccion de los conciertos*/
+
+.concerts {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fondo);
+    z-index: 1;
+
+    & h2 {
+        padding-left: 10%;
+        padding-top: 5%;
+        font-family: var(--titlulo);
+        color: var(--azul);
+        margin: 0;
+        font-size: 3rem;
+        letter-spacing: 5px;
+        font-weight: normal;
+    }
+
+    .video-background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #toggleSound {
+        position: relative;
+        z-index: 1;
+        align-self: center;
+        margin-top: 70vh;
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: var(--azul);
+        color: var(--blanco);
+        border: var(--azul);
+        cursor: pointer;
+        color: var(--blanco);
+        border: solid 3px var(--azul);
+        transition: background-color 0.3s ease;
+        margin-bottom: 25px;
+    }
+
 }
 
 /*estilos de merch*/
@@ -540,6 +627,12 @@ header nav {
                 font-size: 1rem;
                 margin: 0;
             }
+        }
+
+        & .item:hover {
+            transform: scale(1.10);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
     }
 }
@@ -643,6 +736,80 @@ header nav {
                 transform: scale(0.98);
             }
 
+            .custom-alert {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+                max-width: 400px;
+                width: 90%;
+                text-align: center;
+            }
+
+            .alert-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .custom-alert h2 {
+                margin: 0 0 15px 0;
+                color: #333;
+                font-size: 20px;
+            }
+
+            .custom-alert p {
+                margin: 0 0 25px 0;
+                color: #666;
+                font-size: 16px;
+            }
+
+            .alert-buttons {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .alert-btn {
+                padding: 10px 25px;
+                font-size: 14px;
+                font-weight: bold;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: opacity 0.3s;
+            }
+
+            .alert-btn:hover {
+                opacity: 0.8;
+            }
+
+            .btn-accept {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .btn-cancel {
+                background-color: #f44336;
+                color: white;
+            }
+
+            .show {
+                display: block;
+            }
+
+
         }
 
         & .image-contact {
@@ -657,6 +824,115 @@ header nav {
         }
     }
 
+
+}
+
+footer {
+    border-top: 2px solid var(--azul);
+    width: 100%;
+    height: auto;
+    background-color: var(--fondo);
+    margin: 0;
+    padding: 0;
+}
+.footer-content {
+    color: var(--blanco);
+    text-align: center;
+    padding: 20px 0;
+    font-family: var(--subtitulo);
+    font-size: 1rem;
+
+    .social-media {
+        margin-top: 10px;
+
+        .social-icon {
+            color: var(--azul);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+
+            &:hover {
+                color: var(--naranja);
+            }
+        }
+    }
+
+}
+
+/*venta de tickets*/
+
+main {
+    background-color: var(--fondo);
+}
+
+.buy-tickets {
+    width: 80%;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    & h2 {
+        margin: 0;
+        font-family: var(--titlulo);
+        color: var(--azul);
+        text-align: center;
+        font-size: 3rem;
+        padding: 10% 0 2% 0;
+    }
+
+    & .pass-container {
+        display: flex;
+        justify-content: space-around;
+        height: 60%;
+
+        & .pass {
+            width: 25%;
+            border: 2px solid var(--azul);
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--subtitulo);
+            font-size: 1.5rem;
+            color: var(--azul);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+
+            & h3 {
+                margin: 0;
+                font-size: 1.5rem;
+                letter-spacing: 5px;
+                margin-bottom: 10px;
+                font-family: var(--titlulo);
+            }
+
+            & p {
+                margin: 0;
+                font-size: 2rem;
+            }
+
+            & a {
+                text-decoration: none;
+                color: var(--azul);
+                border: 2px solid var(--azul);
+                padding: 10px 20px;
+                margin-top: 15px;
+                transition: all 0.3s ease;
+            }
+
+            &:hover {
+                background-color: var(--azul);
+                color: var(--blanco);
+                transform: scale(1.05);
+            }
+
+        }
+
+    }
 
 }
 
@@ -676,6 +952,9 @@ header nav {
 
 /*Responsive de la seccion de tickets*/
 
+/* ========== MEDIA QUERIES RESPONSIVE ========== */
+
+/* Desktop grande (hasta 1920px) */
 @media (max-width: 1920px) {
     .tour-section {
         width: 100%;
@@ -695,7 +974,158 @@ header nav {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
+    .tour-section {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .tour-title {
+        font-size: 2.8rem;
+        margin-bottom: 50px;
+    }
+
+    .table-header,
+    .tour-row {
+        grid-template-columns: 150px 300px 1fr 150px;
+        gap: 25px;
+    }
+
+    .contact .divider .image-contact {
+        display: flex;
+        align-items: center;
+    }
+    .contact .divider .image-contact img {
+        max-height: 80%;
+    }
+
+    .pass-container {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .pass-container .pass {
+        width: 40% !important;
+    }
+
+    .buy-tickete{
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    main{
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+}
+
+@media (max-width: 1400px) {
+    .merch {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .merch .merch-items .item {
+        width: calc(50% - 1rem);
+    }
+
+    /* Bio */
+    .bio {
+        padding: 0 5% 5rem 5%;
+    }
+
+    .titulo {
+        font-size: 1.6rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .texto {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablets grandes y laptops pequeñas (hasta 1200px) */
+@media (max-width: 1250px) {
+    /* Header */
+    header h4 {
+        font-size: 1.8rem;
+        padding-left: 1.5rem;
+    }
+
+    header nav ul li a {
+        font-size: 1.3rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding-left: 3rem;
+    }
+
+    .hero .texto h1 {
+        font-size: 3.5rem;
+        padding: 1.5rem;
+    }
+
+    .hero .texto h2 {
+        font-size: 1.3rem;
+    }
+
+    /* Bio */
+    .bio .bio-content {
+        height: auto !important;
+        min-height: 500px;
+        margin-bottom: 3rem;
+    }
+
+    .bio .bio-content:nth-child(1) img,
+    .bio .bio-content:nth-child(2) img,
+    .bio .bio-content:nth-child(3) img,
+    .bio .bio-content:nth-child(4) img {
+        width: 60% !important;
+    }
+
+    .bio .bio-content:nth-child(1) .titulo,
+    .bio .bio-content:nth-child(2) .titulo,
+    .bio .bio-content:nth-child(3) .titulo,
+    .bio .bio-content:nth-child(4) .titulo {
+        font-size: 1.5rem !important;
+        padding: 0.8rem 1.2rem !important;
+        position: static !important;
+        transform: none !important;
+        margin-bottom: 1rem;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+    }
+
+    .bio .bio-content:nth-child(1) .texto,
+    .bio .bio-content:nth-child(2) .texto,
+    .bio .bio-content:nth-child(3) .texto,
+    .bio .bio-content:nth-child(4) .texto {
+        font-size: 1.2rem !important;
+        width: 60% !important;
+        position: static !important;
+        margin-top: 1rem;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+
+    .bio .bio-content:nth-child(1),
+    .bio .bio-content:nth-child(2),
+    .bio .bio-content:nth-child(3),
+    .bio .bio-content:nth-child(4) {
+        flex-direction: column !important;
+        padding: 2rem 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding-left: 0 !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* Tour */
     .tour-section {
         padding: 40px 40px;
     }
@@ -735,31 +1165,573 @@ header nav {
         font-size: 0.8rem;
         color: rgba(255, 255, 255, 0.5);
     }
-}
-
-/*Responsive de la parte del album*/
-
-@media (max-width: 1024px) {
-    .albums-section {
-        grid-template-columns: 1fr;
+        /* Albums */
+    .albums {
+        padding: 5% 5%;
     }
 
-    .albums-right {
-        order: -1;
+    .albums h2 {
+        font-size: 2rem;
+    }
+
+    .albums .divider .albums-titulo ul li {
+        font-size: 1.5rem;
+    }
+
+    .albums .divider .albums-titulo ul li:hover {
+        transform: translateX(15px);
+    }
+
+    .albums .divider .albums-titulo ul .album-description {
+        font-size: 1.1rem;
+        padding-left: 20px;
+    }
+
+    .albums .divider .spotify iframe {
+        width: 75% !important;
+        height: 400px !important;
+        justify-content: right;
+    }
+
+    /* Concerts */
+    .concerts h2 {
+        font-size: 2.5rem;
+        padding-left: 7%;
+    }
+
+    /* Contact */
+    .contact .divider .form .contact-title {
+        font-size: 2.5rem;
+    }
+    .contact .divider .image-contact{
+        display: none;
+    }
+
+    
+}
+
+/* Tablets (hasta 1024px) */
+@media (max-width: 1024px) {
+    /* Header */
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    header h4 {
+        font-size: 1.6rem;
+        padding-left: 0;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+    }
+
+    header nav ul li a {
+        font-size: 1.2rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .hero .texto h1 {
+        font-size: 3rem;
+        padding: 1rem;
+    }
+
+    .hero .texto h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Bio */
+    .bio .bio-content {
+        height: auto;
+        min-height: 500px;
+        margin-bottom: 3rem;
+    }
+
+    .bio .bio-content:nth-child(1) img,
+    .bio .bio-content:nth-child(2) img,
+    .bio .bio-content:nth-child(3) img,
+    .bio .bio-content:nth-child(4) img {
+        width: 60%;
+    }
+
+    .bio .bio-content .titulo {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.2rem;
         position: static;
+        transform: none;
+        margin-bottom: 1rem;
+    }
+
+    .bio .bio-content .texto {
+        font-size: 1.2rem;
+        width: 60%;
+        position: static;
+        margin-top: 1rem;
+    }
+
+    .bio .bio-content:nth-child(1),
+    .bio .bio-content:nth-child(2),
+    .bio .bio-content:nth-child(3),
+    .bio .bio-content:nth-child(4) {
+        flex-direction: column;
+        padding: 2rem 0;
+    }
+
+    /* Albums */
+    .albums {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .albums .divider {
+        flex-direction: column;
+    }
+
+    .albums .divider .albums-titulo {
+        margin-bottom: 2rem;
+    }
+
+    .albums .divider .spotify {
+        min-height: 400px;
+    }
+
+    /* Merch */
+    .merch {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .merch .merch-items .item {
+        width: calc(50% - 1rem);
+    }
+
+    /* Contact */
+    .contact {
+        height: auto;
+        min-height: 80vh;
+    }
+
+    .contact .divider {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .contact .divider .image-contact {
+        order: -1;
+        justify-content: center;
+    }
+
+    .contact .divider .image-contact img {
+        max-width: 80%;
+        max-height: 400px;
+    }
+
+    /* Buy Tickets */
+    .buy-tickets {
+        width: 90%;
+    }
+
+    .buy-tickets .pass-container {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .buy-tickets .pass-container .pass {
+        width: calc(50% - 1rem);
     }
 }
 
 @media (max-width: 768px) {
-    .section-title {
+    /* Merch */
+    .merch {
+        padding: 5% 5%;
+    }
+
+    .merch h2 {
+        font-size: 2rem;
+    }
+
+    .merch .merch-items {
+        gap: 1.5rem;
+    }
+
+    .merch .merch-items .item {
+        width: 100%;
+    }
+
+    .merch .merch-items .item img {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header */
+    header h4 {
+        font-size: 1.4rem;
+    }
+
+    header nav ul {
+        gap: 0.5rem;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .hero .texto h1 {
         font-size: 2.5rem;
+        padding: 0.8rem;
     }
 
-    .album-title {
+    .hero .texto h2 {
+        font-size: 1rem;
+        padding: 0 0.8rem;
+    }
+
+    /* Bio */
+    .bio {
+        padding: 0 2% 2rem 2% !important;
+    }
+
+    .bio .bio-content {
+        min-height: 400px !important;
+        margin-bottom: 2rem;
+    }
+
+    .bio .bio-content:nth-child(1) img,
+    .bio .bio-content:nth-child(2) img,
+    .bio .bio-content:nth-child(3) img,
+    .bio .bio-content:nth-child(4) img {
+        width: 100% !important;
+    }
+
+    .bio .bio-content:nth-child(1) .titulo,
+    .bio .bio-content:nth-child(2) .titulo,
+    .bio .bio-content:nth-child(3) .titulo,
+    .bio .bio-content:nth-child(4) .titulo {
+        font-size: 1.1rem !important;
+        padding: 0.5rem 0.8rem !important;
+    }
+
+    .bio .bio-content:nth-child(1) .texto,
+    .bio .bio-content:nth-child(2) .texto,
+    .bio .bio-content:nth-child(3) .texto,
+    .bio .bio-content:nth-child(4) .texto {
+        font-size: 1rem !important;
+        width: 100% !important;
+        padding: 0.6rem 1rem !important;
+    }
+
+    /* Tour */
+    .tour-section {
+        padding: 40px 20px;
+    }
+
+    .tour-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .tour-table {
+        width: 100%;
+    }
+
+    .tour-row {
+        font-size: 1.2rem;
+        padding: 20px 10px;
+    }
+
+
+    /* Concerts */
+    .concerts h2 {
+        font-size: 2rem;
+        padding-left: 5%;
+        letter-spacing: 3px;
+    }
+
+    #toggleSound {
+        margin-top: 50vh;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+
+    /* Contact */
+    .contact {
+        padding: 5% 5%;
+    }
+
+    .contact .divider .form .contact-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .contact .divider .form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .contact .divider .form .submit-btn {
+        padding: 15px;
+        font-size: 0.85rem;
+    }
+
+    .contact .divider .image-contact img {
+        max-width: 100%;
+    }
+
+    /* Buy Tickets */
+    .buy-tickets {
+        width: 95%;
+        padding: 80px 0;
+    }
+
+    .buy-tickets h2 {
+        font-size: 2rem;
+        padding: 5% 0 2% 0;
+    }
+
+    .buy-tickets .pass-container .pass {
+        width: 100%;
+    }
+}
+
+/* Móviles (hasta 480px) */
+@media (max-width: 480px) {
+    /* Header */
+    header {
+        padding: 0.8rem;
+    }
+
+
+    header h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .hero .texto h1 {
+        font-size: 2rem;
+        padding: 0.5rem;
+    }
+
+    .hero .texto h2 {
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
+    }
+
+    /* Tour */
+    .tour-section {
+        padding: 30px 15px;
+    }
+
+    .tour-title {
         font-size: 1.5rem;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
     }
 
-    .album-description {
-        padding-left: 20px;
+    .tour-row {
+        font-size: 1rem;
+        padding: 15px 10px;
+    }
+
+    .ticket-btn {
+        padding: 10px 20px;
+        font-size: 0.75rem;
+    }
+
+    /* Albums */
+    .albums {
+        padding: 5% 3%;
+    }
+
+    .albums h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .albums .divider .albums-titulo ul li {
+        font-size: 1.2rem;
+    }
+
+    .albums .divider .albums-titulo ul li.active {
+        padding-left: 1rem;
+    }
+
+    .albums .divider .albums-titulo ul li:hover {
+        transform: translateX(10px);
+    }
+
+    .albums .divider .albums-titulo ul .album-description {
+        font-size: 0.95rem;
+        padding-left: 10px;
+    }
+
+    .albums .divider .spotify {
+        min-height: 350px;
+    }
+
+    .albums .divider .spotify iframe {
+        width: 100% !important;
+        height: 350px !important;
+    }
+
+    /* Concerts */
+    .concerts h2 {
+        font-size: 1.5rem;
+        padding-left: 3%;
+        padding-top: 8%;
+        letter-spacing: 2px;
+    }
+
+    #toggleSound {
+        margin-top: 40vh;
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    /* Merch */
+    .merch {
+        padding: 5% 3%;
+    }
+
+    .merch h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .merch .merch-items {
+        gap: 1rem;
+    }
+
+    .merch .merch-items .item {
+        width: 100%;
+    }
+
+    .merch .merch-items .item img {
+        max-width: 90%;
+    }
+
+    .merch .merch-items .item h3 {
+        font-size: 1rem;
+    }
+
+    .merch .merch-items .item p {
+        font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contact {
+        padding: 5% 3%;
+    }
+
+    .contact .divider .form .contact-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+    }
+
+    .contact .divider .form .form-group {
+        margin-bottom: 18px;
+        font-size: 0.9rem;
+    }
+
+    .contact .divider .form .form-group label {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .contact .divider .form .form-group input,
+    .contact .divider .form .form-group textarea {
+        font-size: 0.9rem;
+    }
+
+    .contact .divider .form .submit-btn {
+        padding: 12px;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    .contact .divider .form .custom-alert {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .contact .divider .form .custom-alert h2 {
+        font-size: 18px;
+    }
+
+    .contact .divider .form .custom-alert p {
+        font-size: 14px;
+    }
+
+    .contact .divider .form .alert-btn {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+
+    .contact .divider .image-contact {
+        display: none;
+    }
+
+    /* Buy Tickets */
+    .buy-tickets {
+        width: 95%;
+        padding: 60px 0;
+    }
+
+    .buy-tickets h2 {
+        font-size: 1.5rem;
+        padding: 8% 0 3% 0;
+    }
+
+    .buy-tickets .pass-container {
+        gap: 1.5rem;
+    }
+
+    .buy-tickets .pass-container .pass {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .buy-tickets .pass-container .pass h3 {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+    }
+
+    .buy-tickets .pass-container .pass p {
+        font-size: 1.5rem;
     }
 }
